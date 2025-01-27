@@ -4,14 +4,16 @@ using UnityEngine.Events;
 public class InputManager : MonoBehaviour
 {
     public UnityEvent<Vector2> OnMove = new UnityEvent<Vector2>();
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
+    public UnityEvent OnJump = new UnityEvent(); // New event for jumping
 
     // Update is called once per frame
     void Update()
+    {
+        MovementHandler();
+        JumpHandler();
+    }
+
+    private void MovementHandler()
     {
         Vector2 inputVector = Vector2.zero;
         if (Input.GetKey(KeyCode.W))
@@ -32,6 +34,13 @@ public class InputManager : MonoBehaviour
         }
 
         OnMove?.Invoke(inputVector);
+    }
 
+    private void JumpHandler()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)) // Detect jump input
+        {
+            OnJump?.Invoke(); // Trigger jump event
+        }
     }
 }
