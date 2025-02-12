@@ -4,6 +4,12 @@ public class Gutter : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
+
+        // check if the object that entered the trigger is the ball
+        if (!other.CompareTag("Ball"))
+        {
+            return;
+        }
         // get the rigidbody of the ball
         Rigidbody ballRB = other.GetComponent<Rigidbody>();
         // get the velocity of the ball
