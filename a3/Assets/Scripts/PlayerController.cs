@@ -4,22 +4,22 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
+    [SerializeField] private InputManager inputManager;
     private Rigidbody playerRb;
 
+    // Movement variables
     [SerializeField] private float moveSpeed = 5.0f;
-
-    [SerializeField] private float jumpForce = 5.0f;
-
     // A higher value (e.g., 10f - 20f) makes movement snappier.
-    // A lower value(e.g., 2f - 5f) makes movement more gradual and floaty.
+    // A lower value(e.g., 2f - 5f) makes movement more gradual and floaty.=
     [SerializeField] private float lerpFactor = 15.0f;
+    [SerializeField] private float dashForce = 10.0f;
+    private Vector3 lastMoveDirection = Vector3.forward;
 
-    [SerializeField] private InputManager inputManager;
-
+    // Jump variables
     private bool isGrounded = true;
     private int jumpCount = 0;
     private int airJumpCount = 1;
-
+    [SerializeField] private float jumpForce = 5.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
         playerRb = GetComponent<Rigidbody>();
         inputManager.OnSpacePressed.AddListener(Jump);
         inputManager.OnMove.AddListener(Move);
+        inputManager.OnDashPressed.AddListener(Dash);
     }
 
     // Update is called once per frame
@@ -64,19 +65,12 @@ public class PlayerController : MonoBehaviour
             // Convert movement to camera-relative direction
             Vector3 moveDirection = (camForward * direction.z + camRight * direction.x).normalized;
 
+            // Store this direction for dashing
+            lastMoveDirection = moveDirection;
+
             // Apply movement
             Vector3 targetVelocity = moveDirection * moveSpeed;
             playerRb.linearVelocity = Vector3.Lerp(playerRb.linearVelocity, new Vector3(targetVelocity.x, playerRb.linearVelocity.y, targetVelocity.z), lerpFactor * Time.deltaTime);
-        }
-    }
-
-
-    private void Jump()
-    {
-        if (isGrounded || jumpCount < airJumpCount)
-        {
-            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            jumpCount++;
         }
     }
 
@@ -92,4 +86,22 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * lerpFactor);
     }
 
+    private void Jump()
+    {
+        if (isGrounded || jumpCount < airJumpCount)
+        {
+            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            jumpCount++;
+        }
+    }
+
+    private void Dash()
+    {
+        // Use the last movement direction for dashing
+        // If the player isn't moving, use the direction they're facing
+        Vector3 dashDirection = lastMoveDirection.magnitude > 0.1f ? lastMoveDirection : transform.forward;
+
+        // Apply the dash force
+        playerRb.AddForce(dashDirection * dashForce, ForceMode.Impulse);
+    }
 }
