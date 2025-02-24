@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 5.0f;
     // A higher value (e.g., 10f - 20f) makes movement snappier.
     // A lower value(e.g., 2f - 5f) makes movement more gradual and floaty.=
-    [SerializeField] private float lerpFactor = 15.0f;
+    [SerializeField] private float lerpFactor = 20.0f;
     [SerializeField] private float dashForce = 10.0f;
     private Vector3 lastMoveDirection = Vector3.forward;
 
