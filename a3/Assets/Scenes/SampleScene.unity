@@ -347,7 +347,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &162921382
 MonoBehaviour:
@@ -771,6 +771,68 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+--- !u!1001 &334108748
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1571902235}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 013c79f6a8daac244ae53a93489d0747, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.21
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 013c79f6a8daac244ae53a93489d0747, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 013c79f6a8daac244ae53a93489d0747, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 013c79f6a8daac244ae53a93489d0747, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9599521
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 013c79f6a8daac244ae53a93489d0747, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 013c79f6a8daac244ae53a93489d0747, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.28016412
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 013c79f6a8daac244ae53a93489d0747, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 013c79f6a8daac244ae53a93489d0747, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 013c79f6a8daac244ae53a93489d0747, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -32.54
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 013c79f6a8daac244ae53a93489d0747, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 013c79f6a8daac244ae53a93489d0747, type: 3}
+      propertyPath: m_Name
+      value: model
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 013c79f6a8daac244ae53a93489d0747, type: 3}
+--- !u!4 &334108749 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 013c79f6a8daac244ae53a93489d0747, type: 3}
+  m_PrefabInstance: {fileID: 334108748}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &356759470
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1570,6 +1632,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79d6823e4663b24ca516a325357b7d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreText: {fileID: 1075421135}
+  score: 0
 --- !u!1001 &905109358
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3517,7 +3581,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 334108749}
   m_Father: {fileID: 162921380}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &1571902236
@@ -3542,7 +3607,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: -0.05, y: 0, z: -0.33}
 --- !u!23 &1571902237
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3550,7 +3615,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1571902234}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -4799,7 +4864,8 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1844321445512485856, guid: 81298470e7a9faa488fbfd4f1a8894ce, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

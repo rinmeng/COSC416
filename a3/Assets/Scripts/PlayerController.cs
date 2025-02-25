@@ -41,7 +41,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             isGrounded = false;
-
         }
 
         RotateCharacter();
