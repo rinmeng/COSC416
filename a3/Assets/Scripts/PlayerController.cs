@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     // A higher value (e.g., 10f - 20f) makes movement snappier.
     // A lower value(e.g., 2f - 5f) makes movement more gradual and floaty.=
     [SerializeField] private float lerpFactor = 20.0f;
-    [SerializeField] private float dashForce = 10.0f;
+    [SerializeField] private float dashForce = 20.0f;
     private Vector3 lastMoveDirection = Vector3.forward;
 
     // Jump variables
@@ -71,6 +71,10 @@ public class PlayerController : MonoBehaviour
             Vector3 targetVelocity = moveDirection * moveSpeed;
             playerRb.linearVelocity = Vector3.Lerp(playerRb.linearVelocity, new Vector3(targetVelocity.x, playerRb.linearVelocity.y, targetVelocity.z), lerpFactor * Time.deltaTime);
         }
+        else
+        {
+            playerRb.linearVelocity = Vector3.Lerp(playerRb.linearVelocity, new Vector3(0, playerRb.linearVelocity.y, 0), lerpFactor * Time.deltaTime);
+        }
     }
 
     private void RotateCharacter()
@@ -89,6 +93,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isGrounded || jumpCount < airJumpCount)
         {
+            playerRb.linearVelocity = new Vector3(playerRb.linearVelocity.x, 0, playerRb.linearVelocity.z); // Reset Y velocity to prevent floatiness
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             jumpCount++;
         }
@@ -96,11 +101,13 @@ public class PlayerController : MonoBehaviour
 
     private void Dash()
     {
-        // Use the last movement direction for dashing
-        // If the player isn't moving, use the direction they're facing
         Vector3 dashDirection = lastMoveDirection.magnitude > 0.1f ? lastMoveDirection : transform.forward;
+
+        // Reset the vertical component of velocity before dashing
+        playerRb.linearVelocity = new Vector3(playerRb.linearVelocity.x, 0, playerRb.linearVelocity.z);
 
         // Apply the dash force
         playerRb.AddForce(dashDirection * dashForce, ForceMode.Impulse);
     }
+
 }
