@@ -1,6 +1,3 @@
 # Video Preview
 
-
-https://github.com/user-attachments/assets/c6438fd5-a98e-4fae-aa9f-6e596e6ff6c9
-
-
+https://github.com/user-attachments/assets/151b0b49-4410-4ba9-be02-3f5a34d89c0e
