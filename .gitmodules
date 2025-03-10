@@ -1,3 +1,6 @@
 [submodule "a4"]
 	path = a4
 	url = https://github.com/rinmeng/Platformer-Studio-A3
+[submodule "a4platformer"]
+	path = a4platformer
+	url = https://github.com/rinmeng/Platformer-Studio-A3.git
